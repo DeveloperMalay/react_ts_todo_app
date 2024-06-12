@@ -1,15 +1,37 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Input } from "./Input";
+import { useTodo } from "../context/useTodo";
+import toast from "react-hot-toast";
 
 export default function AddTodo() {
   const [input, setInput] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { addTodo } = useTodo();
+  const handleSubmission = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (input.trim() !== "") {
+      addTodo(input);
+      setInput("");
+      toast.success("Todo added successfully!");
+    } else {
+      toast.error("Todo field cannot be empty!");
+    }
+    console.log("form has been submitted");
+  };
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
   return (
     <div className="flex items-center w-full max-w-lg gap-2 p-5 m-auto">
-      <form>
-        <input
+      <form onSubmit={handleSubmission}>
+        <Input
+          ref={inputRef}
           value={input}
-          type="text"
           onChange={(e) => setInput(e.target.value)}
-          className=""
+          type="text"
+          className="w-full px-5 py-2 bg-transparent border-2 outline-none border-zinc-600 rounded-xl placeholder:text-zinc-500 focus:border-white"
           placeholder="start typing ..."
         />
         <button
