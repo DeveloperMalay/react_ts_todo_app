@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Input } from "./Input";
-import { useTodo } from "../context/useTodo";
+import { Input } from "../Custom-Input/Input";
+import { useTodo } from "../../context/useTodo";
 import toast from "react-hot-toast";
-
+import "./AddTodo.css";
 export default function AddTodo() {
   const [input, setInput] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,20 +24,16 @@ export default function AddTodo() {
     }
   }, []);
   return (
-    <div className="flex items-center w-full max-w-lg gap-2 p-5 m-auto">
+    <div className="input-form">
       <form onSubmit={handleSubmission}>
         <Input
           ref={inputRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           type="text"
-          className="w-full px-5 py-2 bg-transparent border-2 outline-none border-zinc-600 rounded-xl placeholder:text-zinc-500 focus:border-white"
           placeholder="start typing ..."
         />
-        <button
-          type="submit"
-          className="px-5 py-2 text-sm font-normal text-blue-300 bg-blue-900 border-2 border-blue-900 active:scale-95 rounded-xl"
-        >
+        <button type="submit" className="custom-button">
           Submit
         </button>
       </form>
