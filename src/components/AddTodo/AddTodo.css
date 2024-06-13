@@ -1,0 +1,22 @@
+.input-form form {
+    display: inline-flex;
+    width: 100%;
+    padding: 0px 20px;
+}
+
+
+.custom-button {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #93c5fd;
+    background-color: #1e3a8a;
+    border: 2px solid #1e3a8a;
+    border-radius: 0.75rem;
+    transition: transform 0.1s ease-in-out;
+    margin-left: 10px;
+}
+
+.custom-button:active {
+    transform: scale(0.95);
+}
